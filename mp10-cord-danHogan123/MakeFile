@@ -1,0 +1,15 @@
+CXX=clang++
+INCLUDES=-Iincludes/
+CXXFLAGS=-std=c++20 -gdwarf-4 -fstandalone-debug -Wall -Wextra -Werror -pedantic 
+
+exec: bin/exec
+
+bin/exec : ./src/driver.cc ./src/cord_utilities.cc ./src/cord.cc ./includes/cord_utilities.hpp ./includes/cord.hpp ./includes/shared_pointer.hpp
+	$(CXX) $(INCLUDES) $(CXXFLAGS) ./src/driver.cc ./src/cord_utilities.cc ./src/cord.cc -o ./bin/exec
+
+
+.DEFAULT_GOAL := exec
+.PHONY: clean exec tests
+
+clean:
+	rm -fr bin/* 
